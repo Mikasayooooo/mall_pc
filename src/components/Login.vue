@@ -1,9 +1,10 @@
 <template>
   <div class="login_container">
+    <img class="login_bg" src="../assets/aa.png" alt="">
     <div class="login_box">
       <!-- 头像区域 -->
       <div class="avatar_box">
-        <img src="../assets/logo.png" alt="">
+        <img src="../assets/aa.png" alt="">
       </div>
       <!-- 登录表单区域 -->
       <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="0px" class="login_form">
@@ -59,6 +60,8 @@ export default {
       this.$refs.loginFormRef.validate(async valid => {
         if (!valid) return
         const { data: res } = await this.$http.post('login', this.loginForm)
+        console.log(res);
+        
         if (res.meta.status !== 200) return this.$message.error('登录失败！')
         this.$message.success('登录成功')
         // 1. 将登录成功之后的 token，保存到客户端的 sessionStorage 中
@@ -75,8 +78,13 @@ export default {
 
 <style lang="less" scoped>
 .login_container {
-  background-color: #2b4b6b;
+  // background-color: #2b4b6b;
   height: 100%;
+  .login_bg{
+      width: 100%;
+      height: 100%;
+      filter: blur(1rem)
+  }
 }
 
 .login_box {

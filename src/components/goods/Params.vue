@@ -17,7 +17,9 @@
         <el-col>
           <span>选择商品分类：</span>
           <!-- 选择商品分类的级联选择框 -->
-          <el-cascader expand-trigger="hover" :options="catelist" :props="cateProps" v-model="selectedCateKeys" @change="handleChange">
+          <el-cascader :options="catelist" :props="cateProps" 
+          v-model="selectedCateKeys" @change="handleChange"
+           clearable change-on-select show-all-levels separator='/'>
           </el-cascader>
         </el-col>
       </el-row>
@@ -125,7 +127,8 @@ export default {
       cateProps: {
         value: 'cat_id',
         label: 'cat_name',
-        children: 'children'
+        children: 'children',
+        expandTrigger : 'hover' 
       },
       // 级联选择框双向绑定到的数组
       selectedCateKeys: [],

@@ -50,7 +50,9 @@
         <el-form-item label="父级分类：">
           <!-- options 用来指定数据源 -->
           <!-- props 用来指定配置对象 -->
-          <el-cascader expand-trigger="hover" :options="parentCateList" :props="cascaderProps" v-model="selectedKeys" @change="parentCateChanged" clearable change-on-select>
+          <el-cascader  :options="parentCateList" 
+          :props="cascaderProps" v-model="selectedKeys" @change="parentCateChanged" 
+          clearable change-on-select show-all-levels separator='/'>
           </el-cascader>
         </el-form-item>
       </el-form>
@@ -125,7 +127,8 @@ export default {
       cascaderProps: {
         value: 'cat_id',
         label: 'cat_name',
-        children: 'children'
+        children: 'children',
+        expandTrigger : 'hover'
       },
       // 选中的父级分类的Id数组
       selectedKeys: []
@@ -200,13 +203,16 @@ export default {
     },
     // 点击按钮，添加新的分类
     addCate() {
+      
       this.$refs.addCateFormRef.validate(async valid => {
+        
         if (!valid) return
         const { data: res } = await this.$http.post('categories', this.addCateForm)
 
         if (res.meta.status !== 201) {
           return this.$message.error('添加分类失败！')
         }
+        console.log(this.addCateForm)
 
         this.$message.success('添加分类成功！')
         this.getCateList()

@@ -40,7 +40,9 @@
               <el-input v-model="addForm.goods_number" type="number"></el-input>
             </el-form-item>
             <el-form-item label="商品分类" prop="goods_cat">
-              <el-cascader expand-trigger="hover" :options="catelist" :props="cateProps" v-model="addForm.goods_cat" @change="handleChange">
+              <el-cascader expand-trigger="hover" :options="catelist" :props="cateProps" 
+              v-model="addForm.goods_cat" @change="handleChange"
+               clearable change-on-select show-all-levels>
               </el-cascader>
             </el-form-item>
           </el-tab-pane>
@@ -60,7 +62,10 @@
           </el-tab-pane>
           <el-tab-pane label="商品图片" name="3">
             <!-- action 表示图片要上传到的后台API地址 -->
-            <el-upload :action="uploadURL" :on-preview="handlePreview" :on-remove="handleRemove" list-type="picture" :headers="headerObj" :on-success="handleSuccess">
+            <el-upload :action="uploadURL" :on-preview="handlePreview"
+             :on-remove="handleRemove" list-type="picture"
+              :headers="headerObj" 
+              :on-success="handleSuccess">
               <el-button size="small" type="primary">点击上传</el-button>
             </el-upload>
           </el-tab-pane>
@@ -125,7 +130,8 @@ export default {
       cateProps: {
         label: 'cat_name',
         value: 'cat_id',
-        children: 'children'
+        children: 'children',
+         expandTrigger:"hover" 
       },
       // 动态参数列表数据
       manyTableData: [],

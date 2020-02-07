@@ -3,8 +3,8 @@
     <!-- 头部区域 -->
     <el-header>
       <div>
-        <img src="../assets/heima.png" alt="">
-        <span>电商后台管理系统</span>
+        
+        <span>电商管理系统</span>
       </div>
       <el-button type="info" @click="logout">退出</el-button>
     </el-header>
@@ -106,9 +106,11 @@ export default {
   align-items: center;
   color: #fff;
   font-size: 20px;
+  
   > div {
     display: flex;
     align-items: center;
+
     span {
       margin-left: 15px;
     }
